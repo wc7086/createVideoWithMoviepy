@@ -1,4 +1,4 @@
-click
-librosa
-moviepy
-Pillow
+click==8.0.3
+librosa==0.9.1
+moviepy==1.0.3
+Pillow==9.0.1
