@@ -36,10 +36,11 @@ from utils import resizeImage, readDir
 @click.option('--height', prompt='Height', default=1080, help='The height of video clips')
 @click.option('--images_origin', prompt='images file', default='./src/images', help='The source images path')
 @click.option('--origin_target_dir', prompt='replace origin dir to target dir', default=('./src/images', './src/imgs'), help='how replace origin dir to target dir')
-@click.option('--music', prompt='Music file', default='./src/music/1302.mp3', help='The music file')
-@click.option('--fps', prompt='video fps ', default=30, help='The output video fps')
-@click.option('--output', prompt='Output file', default='./dist/1353112775.mp4', help='The output file name')
-def main(width, height, images_origin, origin_target_dir, music, fps, output):
+@click.option('--music', prompt='Music file', default='./src/music/0.mp3', help='The music file')
+@click.option('--fps', prompt='video fps ', default=60, help='The output video fps')
+@click.option('--bitrate', prompt='video bitrate ', default='9000k', help='The output video bitrate')
+@click.option('--output', prompt='Output file', default='./dist/test.mp4', help='The output file name')
+def main(width, height, images_origin, origin_target_dir, music, fps, bitrate, output):
     target_images_dir = images_origin.replace(origin_target_dir[0], origin_target_dir[-1])
     if not os.path.exists(target_images_dir):
         filesPath = readDir(images_origin)
@@ -96,13 +97,13 @@ def main(width, height, images_origin, origin_target_dir, music, fps, output):
     final_video = final_clip.set_audio(audio_clip)
     final_video.write_videofile(
         output,
-        fps=fps,
-        codec='mpeg4',
+        fps = fps,
+        codec = 'mpeg4',
         # ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow, placebo
-        preset='medium',
-        audio_codec="libmp3lame",
-        threads=4,
-        bitrate ='6000k')
+        preset ='medium',
+        audio_codec = "libmp3lame",
+        threads = 4,
+        bitrate = bitrate)
 
 
 if __name__ == '__main__':
